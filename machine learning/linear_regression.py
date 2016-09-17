@@ -16,8 +16,6 @@ def linear_regression(data,label,epochs,threshold,lrate):
 		if sum_bias<threshold:
 			print"satistified"
 			break
-		#print bias
-		#print data
 		delta_weight=bias*data
 		acc_weight=lrate*np.sum(delta_weight,axis=0)
 		acc_weight=acc_weight.reshape(acc_weight.shape[0],1)
