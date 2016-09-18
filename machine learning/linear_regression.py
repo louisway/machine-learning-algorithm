@@ -11,13 +11,13 @@ def linear_regression(data,label,epochs,threshold,lrate):
 	for epoch in range(epochs):
 		h=np.dot(data,weight)
 		bias=-(label-h)
-		sum_bias=np.sum(np.square(bias),axis=0)/2
+		sum_bias=np.sum(np.square(bias),axis=0)/(2*n)
 		print "epochs:%d,error_rate:%f" %(epoch,sum_bias)
 		if sum_bias<threshold:
 			print"satistified"
 			break
 		delta_weight=bias*data
-		acc_weight=lrate*np.sum(delta_weight,axis=0)
+		acc_weight=np.sum(delta_weight,axis=0)/n
 		acc_weight=acc_weight.reshape(acc_weight.shape[0],1)
 		weight-=lrate*acc_weight
 	return weight

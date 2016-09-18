@@ -49,7 +49,7 @@ def error_cal(output_data,label_data):
 	output_data=output_data.reshape(1,output_data.shape[0]).T
 	label_data=label_data.reshape(1,label_data.shape[0]).T
 	bias=label_data-output_data
-	sec=np.sum(np.square(bias),axis=0)/2
+	sec=np.sum(np.square(bias),axis=0)/(2*output_data.shape[0])
 	return bias,sec
 
 def backward_propa(inputs,weights,bias,net):
@@ -88,7 +88,7 @@ def train_nn(data,label_data,units_num,epochs,threshold,lrate,activate_function=
 	weights=[]
 	row=m
 	for col in units_num:
-		weight=np.random.random((row+1,col))
+		weight=np.random.random((row+1,col))*2-1
 		weights.append(weight)
 		row=col
 
